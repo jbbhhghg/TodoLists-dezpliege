@@ -42,7 +42,9 @@ export async function testConnection() {
     console.log("   Puerto:", process.env.PORTDB);
   } catch (err) {
     console.error("❌ Error conectando a la base de datos:");
+    console.error("   Código:", err.code);
     console.error("   Mensaje:", err.message);
+    console.error("   Stack:", err.stack);
     console.error("   Host:", process.env.HOSTDB);
     console.error("   Puerto:", process.env.PORTDB);
     console.error("   Base de datos:", process.env.DB);
@@ -52,6 +54,12 @@ export async function testConnection() {
       console.error("   → Verifica tu contraseña en PASSWORDDB");
     } else if (err.message.includes("connect ECONNREFUSED")) {
       console.error("   → PostgreSQL no está corriendo o el host/puerto son incorrectos");
+    } else if (err.code === "ENOTFOUND") {
+      console.error("   → No se puede resolver el host. Verifica HOSTDB");
+    } else if (err.code === "ECONNREFUSED") {
+      console.error("   → Conexión rechazada. El servidor no está escuchando en ese puerto");
+    } else if (err.code === "ECONNRESET") {
+      console.error("   → Conexión reiniciada. Posible problema de SSL o firewall");
     }
   }
 }

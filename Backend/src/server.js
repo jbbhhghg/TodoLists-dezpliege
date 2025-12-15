@@ -1,6 +1,17 @@
 import dotenv from "dotenv";
 dotenv.config(); // DEBE ser lo primero
 
+// 🔍 DEBUG: Mostrar variables cargadas
+console.log("🔍 Variables de entorno cargadas:");
+console.log("   PORT:", process.env.PORT);
+console.log("   NODE_ENV:", process.env.NODE_ENV);
+console.log("   HOSTDB:", process.env.HOSTDB);
+console.log("   PORTDB:", process.env.PORTDB);
+console.log("   DB:", process.env.DB);
+console.log("   USERDB:", process.env.USERDB);
+console.log("   PASSWORDDB:", process.env.PASSWORDDB ? "***" : "NO DEFINIDO");
+console.log("   JWT_SECRET:", process.env.JWT_SECRET ? "***" : "NO DEFINIDO");
+
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
@@ -20,7 +31,7 @@ const corsOptions = {
       "http://localhost:3000",
       "http://127.0.0.1:5173",
       "http://127.0.0.1:3000",
-      "https://frontend-todolist-harrisonguerrero.netlify.app"
+      "https://todolist-frontend-harryson.netlify.app/login"
     ];
     
     // En producción, también permitir el frontend desplegado si existe
