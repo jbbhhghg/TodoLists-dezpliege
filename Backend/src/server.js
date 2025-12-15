@@ -31,7 +31,7 @@ const corsOptions = {
       "http://localhost:3000",
       "http://127.0.0.1:5173",
       "http://127.0.0.1:3000",
-      "https://todolist-frontend-harryson.netlify.app/login"
+      "https://todolist-frontend-harryson.netlify.app"
     ];
     
     // En producción, también permitir el frontend desplegado si existe
@@ -49,7 +49,8 @@ const corsOptions = {
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization"],
+  exposedHeaders: ["Authorization"]
 };
 
 app.use(cors(corsOptions));
